@@ -1,0 +1,29 @@
+﻿* Generar una lista de 100 números aleatorios.
+* Dado la lista del ejercicio anterior, resolver las siguientes problemáticas.
+* Mostrar en consola todos los números primos.
+* Mostrar en consola la suma de todos los elementos.
+* Generar una nueva lista con el cuadrado de los números.
+* Generar una nueva lista con los números primos.
+* Optener el promedio de todos los números mayores a 50.
+* Contar la cantidad de números pares e impares. Este problema debe resolverse en una única sentencia o en un solo querie.
+	
+	Ejemplo
+
+	Pares : 60
+	Impares : 40
+
+* Mostrar en consola, el número y la cantidad de veces que este se encuentra en la lista.
+
+	Ejemplo
+
+	var numeros = new List {1, 2, 1, 2, 3, 1 };
+
+	Salida
+
+	1: 2
+	2: 2
+	3: 1
+
+* Mostrar en consola los elementos de forma descendente.
+* Mostrar en consola los número unicos.
+* Sumar todos los números unicos de la lista.

@@ -1,0 +1,10 @@
+﻿Dadas las siguientes clases.
+Book y Author.
+
+* Mostrar en consola los 3 libros con más ventas.
+* Mostrar en consola los 3 libros con menos ventas.
+* Mostrar en consola el autor con más libros publicados.
+* Mostrar en consola el autor y la cantidad de libros publicados.
+* Mostrar en consola los libros publicados hace menos de 50 años.
+* Mostrar en consola el libro más viejo.
+* Mostrar en consola los autores que tengan un libro que comience con "El".
