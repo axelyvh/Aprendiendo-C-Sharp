@@ -1,0 +1,35 @@
+﻿@model List<ScoresViewModel>
+@{ ViewData["Title"] = "Notas"; }
+
+<h1>Notas</h1>
+
+<a asp-action="Create">Nuevo</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Alumno</th>
+            <th>Curso</th>
+            <th>Nota</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            @foreach (ScoresViewModel item in Model)
+            {
+            <tr>
+                <td>@item.User.FullName</td>
+                <td>@item.Course.Name</td>
+                <td>@item.Score</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <form asp-action="Delete"><input name="Id" asp-for="@item.Id" type="hidden" /><button type="submit">Eliminar</button></form>
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+

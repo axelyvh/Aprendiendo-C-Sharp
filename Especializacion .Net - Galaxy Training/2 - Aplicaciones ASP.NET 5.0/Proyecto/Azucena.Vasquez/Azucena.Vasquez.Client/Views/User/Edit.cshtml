@@ -1,0 +1,39 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form asp-action="Edit">
+
+    <h1>Edit</h1>
+
+    <input asp-for="Id" type="hidden" />
+
+    Usuario
+    <input asp-for="UserName" type="text" disabled />
+    <br />
+
+    Nombres
+    <input asp-for="FirstName" type="text" />
+    <br />
+
+    Apellidos
+    <input asp-for="LastName" type="text" />
+    <br />
+
+    Email
+    <input asp-for="Email" type="text" />
+    <br />
+
+    Rol
+    <select asp-for="RoleId"
+            asp-items="@(new SelectList(ViewBag.LstRoles,"Id","Name"))">
+        <option>-- Seleccione --</option>
+    </select>
+    <br />
+
+    <a asp-action="Index">Regresar a la lista</a>
+    <button type="submit">Actualizar</button>
+
+</form>
+

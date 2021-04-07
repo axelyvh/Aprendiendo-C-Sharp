@@ -1,0 +1,40 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Crear";
+}
+
+<form asp-action="Create">
+
+    <h1>Crear Alumno</h1>
+
+    Nombres
+    <input asp-for="FirstName" type="text" />
+    <br />
+
+    Apellidos
+    <input asp-for="LastName" type="text" />
+    <br />
+
+    Email
+    <input asp-for="Email" type="email" />
+    <br />
+
+    Rol
+    <select asp-for="RoleId"
+            asp-items="@(new SelectList(ViewBag.LstRoles,"Id","Name"))">
+        <option>-- Seleccione --</option>
+    </select>
+    <br />
+
+    Usuario
+    <input asp-for="UserName" type="text" />
+    <br />
+
+    Contraseña
+    <input asp-for="Clave" type="password" />
+    <br />
+
+    <a asp-action="Index">Regresar a la lista</a>
+    <button type="submit">Guardar</button>
+
+</form>
