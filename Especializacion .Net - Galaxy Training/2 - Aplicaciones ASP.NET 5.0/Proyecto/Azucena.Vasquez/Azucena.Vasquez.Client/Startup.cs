@@ -37,7 +37,11 @@ namespace Azucena.Vasquez.Client
             services.AddControllersWithViews(opt => {
                 opt.Filters.Add(new AuthorizeFilter());
             }).AddRazorRuntimeCompilation();
-            services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddRazorPages().AddMvcOptions(options =>
+            {
+                options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
+                    _ => "El campo es requerido.");
+            }).AddRazorRuntimeCompilation();
 
         }
 

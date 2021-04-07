@@ -44,6 +44,7 @@ namespace Azucena.Vasquez.Client.Controllers
                     await _universityService.InsertUser(model);
                     return RedirectToAction(nameof(Index));
                 }
+                ViewBag.LstRoles = _universityService.GetRoles();
                 return View(model);
             }
             catch (Exception ex)
@@ -98,6 +99,7 @@ namespace Azucena.Vasquez.Client.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            ViewBag.LstRoles = _universityService.GetRoles();
             return View(model);
         }
 

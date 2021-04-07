@@ -1,15 +1,17 @@
 ﻿@model List<CoursesViewModel>
-@{ ViewData["Title"] = "Index"; }
+@{ ViewData["Title"] = "Cursos"; }
 
-<a asp-action="Create">Nuevo</a>
+<h1>Lista de cursos</h1>
 
-<table>
+<a class="btn btn-primary mb-3" asp-action="Create">Nuevo Curso</a>
+
+<table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th>Id</th>
             <th>Nombre</th>
             <th>Estado</th>
-            <th>Acciones</th>
+            <th style="width: 5%">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -17,15 +19,15 @@
         {
             @foreach (CoursesViewModel item in Model)
             {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.State</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>
-                    <form asp-action="Delete"><input name="Id" asp-for="@item.Id" type="hidden" /><button type="submit">Eliminar</button></form>
-                </td>
-            </tr>
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@(item.State == true ? "Activado" : "Desactivado")</td>
+                    <td>
+                        <a class="btn btn-info mb-2" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                        <form asp-action="Delete"><input name="Id" asp-for="@item.Id" type="hidden" /><button class="btn btn-danger" type="submit">Eliminar</button></form>
+                    </td>
+                </tr>
             }
         }
     </tbody>

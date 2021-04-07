@@ -11,7 +11,7 @@ namespace Azucena.Vasquez.Client.Models
         }
 
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Nombre es requerido")]
         public string Name { get; set; }
         
         public bool? State { get; set; }

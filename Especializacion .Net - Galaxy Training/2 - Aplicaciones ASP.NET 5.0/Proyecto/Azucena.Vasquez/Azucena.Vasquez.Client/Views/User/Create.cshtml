@@ -1,40 +1,53 @@
 ﻿@model UserViewModel
 @{
-    ViewData["Title"] = "Crear";
+    ViewData["Title"] = "Crear usuario";
 }
 
 <form asp-action="Create">
 
-    <h1>Crear Alumno</h1>
+    <h1>Crear usuario</h1>
 
-    Nombres
-    <input asp-for="FirstName" type="text" />
-    <br />
+    <div class="form-group">
+        <label>Nombres:</label>
+        <input asp-for="FirstName" class="form-control" type="text" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
 
-    Apellidos
-    <input asp-for="LastName" type="text" />
-    <br />
+    <div class="form-group">
+        <label>Apellidos:</label>
+        <input asp-for="LastName" class="form-control" type="text" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
 
-    Email
-    <input asp-for="Email" type="email" />
-    <br />
+    <div class="form-group">
+        <label>Email:</label>
+        <input asp-for="Email" class="form-control" type="email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
 
-    Rol
-    <select asp-for="RoleId"
-            asp-items="@(new SelectList(ViewBag.LstRoles,"Id","Name"))">
-        <option>-- Seleccione --</option>
-    </select>
-    <br />
+    <div class="form-group">
+        <label>Rol</label>
+        <select asp-for="RoleId"
+                asp-items="@(new SelectList(ViewBag.LstRoles,"Id","Name"))"
+                class="form-control">
+            <option value="">-- Seleccione --</option>
+        </select>
+        <span asp-validation-for="RoleId" class="text-danger"></span>
+    </div>
 
-    Usuario
-    <input asp-for="UserName" type="text" />
-    <br />
+    <div class="form-group">
+        <label>Usuario:</label>
+        <input asp-for="UserName" class="form-control" type="text" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
 
-    Contraseña
-    <input asp-for="Clave" type="password" />
-    <br />
+    <div class="form-group">
+        <label>Contraseña:</label>
+        <input asp-for="Clave" class="form-control" type="password" />
+        <span asp-validation-for="Clave" class="text-danger"></span>
+    </div>
 
-    <a asp-action="Index">Regresar a la lista</a>
-    <button type="submit">Guardar</button>
+    <a asp-action="Index" class="btn btn-info">Regresar a la lista</a>
+    <button type="submit" class="btn btn-success">Guardar</button>
 
 </form>

@@ -49,6 +49,9 @@ namespace Azucena.Vasquez.Client.Controllers
                     _universityService.InsertScore(model);
                     return RedirectToAction(nameof(Index));
                 }
+
+                ViewBag.LstStudent = _universityService.GetUsersBy_Role("ALUMNO");
+                ViewBag.LstCourses = _universityService.GetCourses();
                 return View(model);
             }
             catch (Exception ex)
@@ -106,6 +109,8 @@ namespace Azucena.Vasquez.Client.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            ViewBag.LstStudent = _universityService.GetUsersBy_Role("ALUMNO");
+            ViewBag.LstCourses = _universityService.GetCourses();
             return View(model);
         }
 
