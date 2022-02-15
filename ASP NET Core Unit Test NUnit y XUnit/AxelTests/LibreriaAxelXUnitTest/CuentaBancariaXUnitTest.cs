@@ -1,20 +1,20 @@
 ﻿using LibreriaAxel;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 
-namespace LibreriaAxelNUnitTest
+namespace LibreriaAxelXUnitTest
 {
-    [TestFixture]
-    public class CuentaBancariaNUnitTest
+    public class CuentaBancariaXUnitTest
     {
 
         private CuentaBancaria cuenta;
 
-        [SetUp]
-        public void SetUp() {
+        public CuentaBancariaXUnitTest()
+        {
+
         }
 
-        [Test]
+        [Fact]
         public void Deposito_InputMonto100_ReturnsTrue()
         {
 
@@ -28,12 +28,12 @@ namespace LibreriaAxelNUnitTest
 
             // 3. Assert
             // Compara resultados
-            Assert.IsTrue(resultado);
-            Assert.That(cuentaBancaria.GetBalance, Is.EqualTo(100));
+            Assert.True(resultado);
+            Assert.Equal(100, cuentaBancaria.GetBalance());
 
         }
 
-        [Test]
+        [Fact]
         public void Deposito_InputMonto100Mocking_ReturnsTrue()
         {
 
@@ -48,14 +48,14 @@ namespace LibreriaAxelNUnitTest
 
             // 3. Assert
             // Compara resultados
-            Assert.IsTrue(resultado);
-            Assert.That(cuentaBancaria.GetBalance, Is.EqualTo(100));
+            Assert.True(resultado);
+            Assert.Equal(100, cuentaBancaria.GetBalance());
 
         }
 
-        [Test]
-        [TestCase(200, 100)]
-        [TestCase(200, 150)]
+        [Theory]
+        [InlineData(200, 100)]
+        [InlineData(200, 150)]
         public void Retiro_Retiro100ConBalance200_ReturnsTrue(int balance, int retiro)
         {
 
@@ -76,12 +76,12 @@ namespace LibreriaAxelNUnitTest
 
             // 3. Assert
             // Compara resultados
-            Assert.IsTrue(resultado);
+            Assert.True(resultado);
 
         }
 
-        [Test]
-        [TestCase(200, 300)]
+        [Theory]
+        [InlineData(200, 300)]
         public void Retiro_Retiro300ConBalance200_ReturnsFalse(int balance, int retiro)
         {
 
@@ -103,12 +103,13 @@ namespace LibreriaAxelNUnitTest
 
             // 3. Assert
             // Compara resultados
-            Assert.IsFalse(resultado);
+            Assert.False(resultado);
 
         }
 
-        [Test]
-        public void CuentaBancariaLoggerGeneral_LogMocking_ReturnTrue() {
+        [Fact]
+        public void CuentaBancariaLoggerGeneral_LogMocking_ReturnTrue()
+        {
 
             var loggerGeneralMock = new Mock<ILoggerGeneral>();
             string textPrueba = "hola mundo";
@@ -117,11 +118,11 @@ namespace LibreriaAxelNUnitTest
 
             var resultado = loggerGeneralMock.Object.MessageConReturnStr("holA Mundo");
 
-            Assert.That(resultado, Is.EqualTo(textPrueba));
+            Assert.Equal(textPrueba, resultado);
 
         }
 
-        [Test]
+        [Fact]
         public void CuentaBancariaLoggerGeneral_LogMockingOutPut_ReturnTrue()
         {
 
@@ -134,11 +135,11 @@ namespace LibreriaAxelNUnitTest
             string parametroOut = "";
             var resultado = loggerGeneralMock.Object.MessageConOutParametroReturnBoolean("Axel", out parametroOut);
 
-            Assert.IsTrue(resultado);
+            Assert.True(resultado);
 
         }
 
-        [Test]
+        [Fact]
         public void CuentaBancariaLoggerGeneral_LogMockingObjetoRef_ReturnTrue()
         {
 
@@ -150,14 +151,14 @@ namespace LibreriaAxelNUnitTest
                              .Returns(true);
 
             var resultado_true = loggerGeneralMock.Object.MessageConObjetoReferenciaReturnBoolean(ref client);
-            Assert.IsTrue(resultado_true);
+            Assert.True(resultado_true);
 
             var resultado_false = loggerGeneralMock.Object.MessageConObjetoReferenciaReturnBoolean(ref clientNoUsado);
-            Assert.IsFalse(resultado_false);
+            Assert.False(resultado_false);
 
         }
 
-        [Test]
+        [Fact]
         public void CuentaBancariaLoggerGeneral_LogMockingPropiedadPrioridadTipo_ReturnsTrue()
         {
 
@@ -169,12 +170,12 @@ namespace LibreriaAxelNUnitTest
 
             loggerGeneralMock.Object.PrioridadLogger = 100;
 
-            Assert.That(loggerGeneralMock.Object.TipoLogger, Is.EqualTo("warning"));
-            Assert.That(loggerGeneralMock.Object.PrioridadLogger, Is.EqualTo(100));
+            Assert.Equal("warning", loggerGeneralMock.Object.TipoLogger);
+            Assert.Equal(100, loggerGeneralMock.Object.PrioridadLogger);
 
         }
 
-        [Test]
+        [Fact]
         public void CuentaBancariaLoggerGeneral_LogMockingPropiedadPrioridadTipoCallBacks_ReturnsTrue()
         {
 
@@ -186,8 +187,8 @@ namespace LibreriaAxelNUnitTest
 
             loggerGeneralMock.Object.PrioridadLogger = 100;
 
-            Assert.That(loggerGeneralMock.Object.TipoLogger, Is.EqualTo("warning"));
-            Assert.That(loggerGeneralMock.Object.PrioridadLogger, Is.EqualTo(100));
+            Assert.Equal("warning", loggerGeneralMock.Object.TipoLogger);
+            Assert.Equal(100, loggerGeneralMock.Object.PrioridadLogger);
 
             string textoTemporal = "axel";
             loggerGeneralMock.Setup(x => x.LogDatabase(It.IsAny<string>()))
@@ -196,19 +197,19 @@ namespace LibreriaAxelNUnitTest
 
             loggerGeneralMock.Object.LogDatabase("vasquez");
 
-            Assert.That(textoTemporal, Is.EqualTo("axelvasquez"));
+            Assert.Equal("axelvasquez", textoTemporal);
 
         }
 
-        [Test]
+        [Fact]
         public void CuentaBancariaLogger_VerifyEjemplo()
         {
 
             var loggerGeneralMock = new Mock<ILoggerGeneral>();
-            
+
             CuentaBancaria cuentaBancaria = new CuentaBancaria(loggerGeneralMock.Object);
             cuentaBancaria.Deposito(100);
-            Assert.That(cuentaBancaria.GetBalance, Is.EqualTo(100));
+            Assert.Equal(100, cuentaBancaria.GetBalance());
 
             // Verifica cuantas veces el mock esta llamando al metodo message
             loggerGeneralMock.Verify(x => x.Message(It.IsAny<string>()), Times.Exactly(3));

@@ -12,6 +12,10 @@
 
         public bool Deposito(int monto) {
             _loggerGeneral.Message("Esta depositando la cantidad de: " + monto.ToString());
+            _loggerGeneral.Message("Es otro texto");
+            _loggerGeneral.Message("Visita axel.com");
+            _loggerGeneral.PrioridadLogger = 100;
+            var prioridad = _loggerGeneral.PrioridadLogger;
             balance += monto;
             return true;
         }
