@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="AppService\" />
+    <Folder Include="BussinessProcess\" />
+    <Folder Include="BussinessRules\" />
+    <Folder Include="Common\" />
+    <Folder Include="Domain\" />
+    <Folder Include="Dto\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Jobs\" />
+    <Folder Include="AutoMapper\" />
+    <Folder Include="Utils\" />
+  </ItemGroup>
+
+</Project>
