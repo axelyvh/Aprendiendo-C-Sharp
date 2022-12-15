@@ -1,3 +1,4 @@
+
 using CleanArchitecture.API.Middleware;
 using CleanArchitecture.Application;
 using CleanArchitecture.Identity;
@@ -18,10 +19,11 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.ConfigureIdentityServices(builder.Configuration);
 
-builder.Services.AddCors(options => {
+builder.Services.AddCors(options =>
+{
     options.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin()
-                                                      .AllowAnyMethod()
-                                                      .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
     );
 });
 
@@ -44,14 +46,14 @@ app.UseCors("CorsPolicy");
 
 app.MapControllers();
 
-using (var scope = app.Services.CreateScope()) {
 
+using (var scope = app.Services.CreateScope())
+{
     var service = scope.ServiceProvider;
     var loggerFactory = service.GetRequiredService<ILoggerFactory>();
 
     try
     {
-
         var context = service.GetRequiredService<StreamerDbContext>();
         await context.Database.MigrateAsync();
         await StreamerDbContextSeed.SeedAsync(context, loggerFactory);
@@ -59,14 +61,12 @@ using (var scope = app.Services.CreateScope()) {
 
         var contextIdentity = service.GetRequiredService<CleanArchitectureIdentityDbContext>();
         await contextIdentity.Database.MigrateAsync();
-
     }
     catch (Exception ex)
     {
         var logger = loggerFactory.CreateLogger<Program>();
         logger.LogError(ex, "Error en migration");
     }
-
 }
 
 app.Run();

@@ -4,19 +4,13 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands.UpdateStream
 {
     public class UpdateStreamerCommandValidator : AbstractValidator<UpdateStreamerCommand>
     {
-
         public UpdateStreamerCommandValidator()
         {
-
             RuleFor(p => p.Nombre)
-                .NotEmpty().WithMessage("{Nombre} no puede estar en blanco")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{Nombre} no puede exceder los 50 caracteres");
+                .NotNull().WithMessage("{Nombre} no permite valores nulos");
 
             RuleFor(p => p.Url)
-               .NotEmpty().WithMessage("La {Url} no puede estar en blanco");
-
+                .NotNull().WithMessage("{Ur;} no permite valores nulos");
         }
-
     }
 }

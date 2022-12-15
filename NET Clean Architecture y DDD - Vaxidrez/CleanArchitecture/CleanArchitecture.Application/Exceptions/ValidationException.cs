@@ -9,14 +9,16 @@ namespace CleanArchitecture.Application.Exceptions
             Errors = new Dictionary<string, string[]>();
         }
 
-        public ValidationException(IEnumerable<ValidationFailure> failures) : this()
+        public ValidationException(IEnumerable<ValidationFailure>  failures) : this()
         {
             Errors = failures
                 .GroupBy(e => e.PropertyName, e => e.ErrorMessage)
                 .ToDictionary(failureGroup => failureGroup.Key, failureGroup => failureGroup.ToArray());
+
         }
 
-        public IDictionary<string, string[]> Errors { get; set; }
+
+        public IDictionary<string, string[]> Errors { get; }
 
     }
 }

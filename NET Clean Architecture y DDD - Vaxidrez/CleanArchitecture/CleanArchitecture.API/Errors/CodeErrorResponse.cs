@@ -2,8 +2,9 @@
 {
     public class CodeErrorResponse
     {
-        public int StatusCode { get; set; }
-        public string? Message { get; set; }
+       public int StatusCode { get; set; }
+
+       public string? Message { get; set; }
 
         public CodeErrorResponse(int statusCode, string? message = null)
         {
@@ -11,8 +12,8 @@
             Message = message ?? GetDefaultMessageStatusCode(statusCode);
         }
 
-        private string GetDefaultMessageStatusCode(int statusCode) {
-
+        private string GetDefaultMessageStatusCode(int statusCode)
+        {
             return statusCode switch
             {
                 400 => "El Request enviado tiene errores",
@@ -21,8 +22,6 @@
                 500 => "Se producieron errores en el servidor",
                 _ => string.Empty
             };
-
         }
-
     }
 }
