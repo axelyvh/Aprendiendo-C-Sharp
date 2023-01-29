@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+########################################################## microservices.demo.auth.db ##################################################################################
+  identitybd:
+    image: ${DOCKER_REGISTRY-}identitybd
+    container_name: identitybd
+    mem_limit: 1536m
+    mem_reservation: 128M
+    cpus: 1.0
+    ports:
+       - 14337:1433
+    build:
+      context: .
+      dockerfile: IdentityBD/Dockerfile
+    networks:
+      - identitybd
+networks:
+  identitybd:
+    name: identitybd
+    driver: bridge
