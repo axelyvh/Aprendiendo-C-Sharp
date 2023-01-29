@@ -1,0 +1,13 @@
+﻿
+namespace Microservices.Demo.Policy.API.Infrastructure.Data.Repository
+{
+    using Microservices.Demo.Policy.API.Infrastructure.Data.Entities;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    public interface IPolicyRepository
+    {
+        void Add(Policy policy);
+        Task<Policy> WithNumber(string number);
+        Task<List<Policy>> GetAll();
+    }
+}
